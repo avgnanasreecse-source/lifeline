@@ -7,10 +7,11 @@ import { PasteBox } from '@/components/paste-box'
 import { SmartTips } from '@/components/smart-tips'
 import { SummaryBar } from '@/components/summary-bar'
 import { Timeline } from '@/components/timeline'
+import { useStoredObligations } from '@/hooks/use-stored-obligations'
 
 export function LifeLineApp() {
   const [today] = useState(() => new Date())
-  const [items, setItems] = useState<Obligation[]>(() => createDemoObligations(today))
+  const [items, setItems] = useStoredObligations(today)
   const [highlightIds, setHighlightIds] = useState<string[]>([])
 
   const groups = useMemo(() => groupByBucket(items, today), [items, today])
